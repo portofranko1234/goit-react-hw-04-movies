@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { trendingMovies } from "../../services/MovieDatabaseApi";
+import { fetchTrendingMovies } from "../../services/MovieDatabaseApi";
 
-StartPage.propTypes = {
+HomePage.propTypes = {
   history: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
 };
 
-function StartPage(props) {
+function HomePage(props) {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const data = await trendingMovies();
+      const data = await fetchTrendingMovies();
       setMovies(data);
     })();
   }, []);
@@ -39,4 +39,4 @@ function StartPage(props) {
     </>
   );
 }
-export default StartPage;
+export default HomePage;

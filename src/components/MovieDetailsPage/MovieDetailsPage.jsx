@@ -19,7 +19,7 @@ MovieDetailsPage.propTypes = {
 };
 
 function MovieDetailsPage(props) {
-  const [movie, setMovie] = useState({});
+  const [movie, setMovie] = useState(null);
   const [from, setFrom] = useState("");
   const [search, setSearch] = useState("");
   const [error, setError] = useState("");
@@ -29,7 +29,7 @@ function MovieDetailsPage(props) {
   useEffect(() => {
     (async () => {
       try {
-        const getMovieDetails = fetchMovieDetails(movieId);
+        const getMovieDetails = await fetchMovieDetails(movieId);
         setMovie(getMovieDetails);
       } catch (error) {
         if (error.response) {
@@ -54,10 +54,10 @@ function MovieDetailsPage(props) {
 
   return (
     <>
-      <button type="button" onClick={handelClick}>
+      <button type="button" onClick={handelClick} className="btn">
         Go back
       </button>
-      {(movie.id && (
+      {(movie && (
         <>
           <div>
             {movie.poster_path && (

@@ -31,7 +31,9 @@ export function Cast() {
             </li>
           ))}
         </ul>
-      )) || <p>The resource you requested could not be found.</p>}
+      )) || (
+        <p className="descr">The resource you requested could not be found.</p>
+      )}
     </>
   );
 }
